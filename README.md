@@ -12,7 +12,7 @@ The usual error message shown is:
 
 ## How To Use
 
-1. Take a backup of your sites database.
+1. Take a backup of your sites database. You use this file at your own risk!
 2. Upload json-db-check.php to the root of your site.
 3. Browse to the file in any browser.
 4. The script will first check for any invalid empty fields and correct them.
