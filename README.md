@@ -19,3 +19,4 @@ The usual error message shown is:
 5. Check your site to see if the error has gone.
 6. If the site still has errors, click on the 'Check For All Invalid Values' button to check each field.
 7. Check each error warning in a JSON validator and either manually fix it or contact the relevant extensions developer.
+8. Delete this script from your hosting account.
