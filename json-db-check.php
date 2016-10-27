@@ -1,3 +1,9 @@
+<?php
+/**
+ * Turn on outputbuffering for servers that have it disabled.
+ */
+ob_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
