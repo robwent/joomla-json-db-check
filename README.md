@@ -20,3 +20,15 @@ The usual error message shown is:
 6. If the site still has errors, click on the 'Check For All Invalid Values' button to check each field.
 7. Check each error warning in a JSON validator and either manually fix it or contact the relevant extensions developer.
 8. Delete this script from your hosting account.
+
+## False Positives
+
+Not everything in these fields may need to be stored in JSON format, it depends on how the information is used. For example, a custom component may use it's own column called 'params' to store information as a serialise array and then validate it using different methods.
+
+In that case, the script would show that the field is not valid but it would not be causing an issue on the site. A serialised array looks like this:
+
+    a:3:{s:6:"action";s:7:"confirm";s:13:"actionbtntext";s:28:"{trans:CONFIRM_SUBSCRIPTION}";s:9:"actionurl";s:19:"{confirm}{/confirm}";}
+
+If running the first check makes the site operational, you can likely forget the detailed check, delete the script and use the site as normal.
+
+If the site still has errors, start by looking at the issues with the core tables and then move on to 3rd party tables which look like they should be storing JSON.
