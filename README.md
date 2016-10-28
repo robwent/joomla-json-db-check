@@ -21,6 +21,8 @@ The usual error message shown is:
 7. Check each error warning in a JSON validator and either manually fix it or contact the relevant extensions developer.
 8. Delete this script from your hosting account.
 
+More detail and some screenshots can be seen in this [blog post](https://robertwent.com/blog/joomla/102-fixing-json-data-errors-after-updating-to-joomla-3-3-6)
+
 ## False Positives
 
 Not everything in these fields may need to be stored in JSON format, it depends on how the information is used. For example, a custom component may use it's own column called 'params' to store information as a serialise array and then validate it using different methods.
