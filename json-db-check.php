@@ -115,7 +115,7 @@ ob_start();
 			</form>
 			<p></p>
 			<p><small>(This will not replace any values, you will need to manaully fix them)</small></p>
-		<? else : ?>
+		<?php else : ?>
 			<h4>Checking all Params and Rules Entries for Invalid Syntax</h4>
 			<?php
 			// Check all params for invalid syntax
