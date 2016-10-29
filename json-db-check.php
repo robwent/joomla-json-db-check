@@ -158,7 +158,6 @@ ob_start();
 				}?>
 
 				<h4>Finished checking invalid parameters</h4>
-				<p>If you have issues shown above, some may be false positives. Please check the readme file <a target="_blank" href="https://github.com/robwent/joomla-json-db-check#false-positives">here</a></p>
 				<p>Check invalid rules at <a target="_blank" href="http://jsonlint.com/">jsonlint.com</a></p>
 				<form>
 					<button class="btn" name="fullcheck" value="1">Check Again</button>
