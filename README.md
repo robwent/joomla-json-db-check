@@ -25,12 +25,8 @@ More detail and some screenshots can be seen in this [blog post](https://robertw
 
 ## False Positives
 
-Not everything in these fields may need to be stored in JSON format, it depends on how the information is used. For example, a custom component may use it's own column called 'params' to store information as a serialise array and then validate it using different methods.
+The script has been updated to use the same check that Joomla does to see if the data should be decoded from JSON.
 
-In that case, the script would show that the field is not valid but it would not be causing an issue on the site. A serialised array looks like this:
+It should only show issues that will cause Joomla to show an error.
 
-    a:3:{s:6:"action";s:7:"confirm";s:13:"actionbtntext";s:28:"{trans:CONFIRM_SUBSCRIPTION}";s:9:"actionurl";s:19:"{confirm}{/confirm}";}
-
-If running the first check makes the site operational, you can likely forget the detailed check, delete the script and use the site as normal.
-
-If the site still has errors, start by looking at the issues with the core tables and then move on to 3rd party tables which look like they should be storing JSON.
+If you see an error in the script output but Joomla is working without any problems, please report it in [issues](https://github.com/robwent/joomla-json-db-check/issues).
