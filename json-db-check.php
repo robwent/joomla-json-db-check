@@ -72,7 +72,7 @@ ob_start();
 	{
 		$data = trim($data);
 
-		return ((substr($data, 0, 1) === '{') && (substr($data, -1, 1) === '}')) ? true : false;
+		return ((substr($data, 0, 1) === '{') && (substr($data, -1, 1) === '}')) ? false : true;
 	}
 
 	function is_json()
