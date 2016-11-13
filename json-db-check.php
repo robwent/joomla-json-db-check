@@ -67,6 +67,7 @@ ob_start();
 
 	$jinput    = $app->input;
 	$fullcheck = $jinput->get('fullcheck', 0, 'INT');
+    $columns =  $jinput->get('columns', array(), 'array');
 
 	function is_trying_to_be_json($data)
 	{
@@ -82,11 +83,36 @@ ob_start();
 		return (json_last_error() === JSON_ERROR_NONE);
 	}
 
+    //The columns to check
+    $column_string = 'COLUMN_NAME = \'params\' OR COLUMN_NAME = \'rules\' OR COLUMN_NAME = \'attribs\'';
+    if(count($columns) > 0)
+    {
+        $column_string = '';
+        $first = 1;
+
+        if(in_array('params', $columns))
+        {
+            $column_string .= 'COLUMN_NAME = \'params\'';
+            $first = 0;
+        }
+
+        if(in_array('rules', $columns))
+        {
+            $column_string .= $first ? 'COLUMN_NAME = \'rules\'' : ' OR COLUMN_NAME = \'rules\'';
+            $first = 0;
+        }
+
+        if(in_array('attribs', $columns))
+        {
+            $column_string .= $first ? 'COLUMN_NAME = \'attribs\'' : ' OR COLUMN_NAME = \'attribs\'';
+        }
+    }
+
 	//We use this for both checks
 	$query = $db->getQuery(true)
 	->select('TABLE_NAME,COLUMN_NAME')
 	->from('INFORMATION_SCHEMA.COLUMNS')
-	->where('COLUMN_NAME = \'params\' OR COLUMN_NAME = \'rules\'')
+	->where($column_string)
 	->andWhere('TABLE_SCHEMA = \'' . $config->get('db') . '\'');
 
 	$db->setQuery($query);
@@ -119,11 +145,27 @@ ob_start();
 			<h4>Finished checking empty parameters</h4>
 			<form>
 				<button class="btn" name="fullcheck" value="1">Check For All Invalid Values</button>
+                Columns to check:
+                <label for="params" class="pure-checkbox">
+                    <input id="params" type="checkbox" name="columns[]" value="params" checked>
+                    params
+                </label>
+                <label for="params" class="pure-checkbox">
+                    <input id="params" type="checkbox" name="columns[]" value="rules" checked>
+                    rules
+                </label>
+                <label for="params" class="pure-checkbox">
+                    <input id="params" type="checkbox" name="columns[]" value="attribs" checked>
+                    attribs
+                </label>
 			</form>
 			<p></p>
 			<p><small>(This will not replace any values, you will need to manaully fix them)</small></p>
-		<?php else : ?>
-			<h4>Checking all Params and Rules Entries for Invalid Syntax</h4>
+		<?php else : 
+        if(count($columns) > 0)
+        {
+        ?>
+			<h4>Checking '<?php echo implode(', ', $columns) ?>'  Entries for Invalid Syntax</h4>
 			<?php
 			// Check all params for invalid syntax
 			if ($results)
@@ -159,8 +201,28 @@ ob_start();
 
 				<h4>Finished checking invalid parameters</h4>
 				<p>Check invalid rules at <a target="_blank" href="http://jsonlint.com/">jsonlint.com</a></p>
+                <?php } 
+                else 
+                {
+                    //No columns selected ?>
+                <h4>You need to select at least one column to check!</h4>
+
+                <?php } ?>
 				<form>
 					<button class="btn" name="fullcheck" value="1">Check Again</button>
+                    Columns to check:
+                    <label for="params" class="pure-checkbox">
+                        <input id="params" type="checkbox" name="columns[]" value="params" <?php echo (in_array('params', $columns)) ? 'checked' : ''; ?>>
+                        params
+                    </label>
+                    <label for="params" class="pure-checkbox">
+                        <input id="params" type="checkbox" name="columns[]" value="rules" <?php echo (in_array('rules', $columns)) ? 'checked' : ''; ?>>
+                        rules
+                    </label>
+                    <label for="params" class="pure-checkbox">
+                        <input id="params" type="checkbox" name="columns[]" value="attribs" <?php echo (in_array('attribs', $columns)) ? 'checked' : ''; ?>>
+                        attribs
+                    </label>
 				</form>
 
 			<?php endif; ?>
