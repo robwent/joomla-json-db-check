@@ -1,6 +1,6 @@
 # Joomla JSON Database Check
 
-Checks Joomla 'params' and 'rules' fields for invalid JSON data.
+Checks Joomla 'params', 'rules' and 'attribs' fields for invalid JSON data.
 
 ## Why?
 
@@ -17,7 +17,7 @@ The usual error message shown is:
 3. Browse to the file in any browser.
 4. The script will first check for any invalid empty fields and correct them.
 5. Check your site to see if the error has gone.
-6. If the site still has errors, click on the 'Check For All Invalid Values' button to check each field.
+6. If the site still has errors, select the columns you want to check by checking the checkboxes and click on the 'Check For All Invalid Values' button to check each field.
 7. Check each error warning in a JSON validator and either manually fix it or contact the relevant extensions developer.
 8. Delete this script from your hosting account.
 
