@@ -21,7 +21,7 @@ The usual error message shown is:
 7. Check each error warning in a JSON validator and either manually fix it or contact the relevant extensions developer.
 8. Delete this script from your hosting account.
 
-More detail and some screenshots can be seen in this [blog post](https://robertwent.com/blog/joomla/102-fixing-json-data-errors-after-updating-to-joomla-3-3-6)
+More detail and some screenshots can be seen in this [blog post](https://robertwent.com/blog/fixing-json-data-errors-after-updating-to-joomla-3-6-3/)
 
 ## False Positives
 
